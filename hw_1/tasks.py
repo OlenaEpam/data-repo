@@ -12,7 +12,7 @@ import random
 # Task1. Create list of 100 random numbers from 0 to 1000
 """Create a variable random_list, call for a method sample from random module which requires range 
 and number of required numbers. The method will return a list"""
-random_list = random.sample(range(0, 1000), 100)
+random_list = random.sample(range(0, 1001), 100)
 print(f"this is random list generated: {random_list}")
 
 # Task2. Sort list from min to max (without using sort())
@@ -42,15 +42,15 @@ for i in sorted_list:  # for every number in a list
 print(f"This is a list with even numbers: {even_numbers}")
 print(f"This is a list with odd numbers: {odd_numbers}")
 
-# using mean method let's get average from list of numbers. In case of empty list, print error from Except clause
-try:
+# using mean method, get average from list of numbers. In case of an empty list, print error
+if len(even_numbers) > 0:
     average_of_even = mean(even_numbers)
     print(f"Average of even numbers is: {average_of_even}")
-except ZeroDivisionError:
-    print('error: 0 even numbers in a list')
+else:
+    print('error: list is empty')
 
-try:
+if len(odd_numbers) > 0:
     average_of_odd = mean(odd_numbers)
     print(f"Average of odd numbers is: {average_of_odd}")
-except ZeroDivisionError:
+else:
     print('error: 0 odd numbers in a list')
