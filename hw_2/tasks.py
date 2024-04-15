@@ -7,28 +7,48 @@ import string
 # dict's random numbers of keys should be letter,
 # dict's values should be a number (0-100),
 # example: [{'a': 5, 'b': 7, 'g': 11}, {'a': 3, 'c': 35, 'g': 42}]
+
 # 2. get previously generated list of dicts and create one common dict:
 # if dicts have same key, we will take max value, and rename key with dict number with max value
 # if key is only in one dict - take it as is,
 # example: {'a_1': 5, 'b': 7, 'c': 35, 'g_2': 42}
-# Each line of code should be commented with description.
-# Commit script to git repository and provide link as home task result.
 
-# 1. create a list of random number of dicts (from 2 to 10)
-# Determine some random number for number of dictionaries
 number_of_dictionaries = random.randint(2, 10)
-number_for_values = random.randint(2, 100)
-# Randomly choose a letter from all the ascii_letters
-randomLetter = random.choice(string.ascii_letters)
-print(randomLetter)
+number_of_keys = random.randint(2, 10)
+list_of_dictionaries = []
+a = 1
+b = 1
+while a <= number_of_dictionaries:
+    c = {}
+    a += 1
+    while b <= number_of_keys:
+        c[random.choice(string.ascii_letters)] = random.randint(2, 100)
+        b += 1
+    list_of_dictionaries.append(c)
+    b = 1
 
-# dict's random numbers of keys should be letter
+print(list_of_dictionaries)
 
-# Create empty list to put dictionaries into it
-# list_of_dictionaries = []
-# a = 0
-# while a <= number_of_dictionaries:
-#     list_of_dictionaries.append()
-#     a += 1
+united_dictionary = {}
+
+for i in list_of_dictionaries:
+    for key, value in i.items():
+        if key in united_dictionary.keys():
+            current_value = i[key]
+            saved_value = united_dictionary[key]
+            if current_value > saved_value:
+                united_dictionary.pop(key)
+                dictionary_number = int(list_of_dictionaries.index(i)) + 1
+                key = f"{key}_{dictionary_number}"
+                united_dictionary[key] = current_value
+            else:
+                united_dictionary.pop(key)
+                dict_number = int(list_of_dictionaries.index(i))
+                key = f"{key}_{dict_number}"
+                united_dictionary[key] = saved_value
+        else:
+            united_dictionary[key] = value
+
+print(united_dictionary)
 
 
