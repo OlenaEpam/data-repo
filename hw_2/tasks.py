@@ -14,36 +14,32 @@ import string
 # example: {'a_1': 5, 'b': 7, 'c': 35, 'g_2': 42}
 
 number_of_dictionaries = random.randint(2, 10)
-number_of_keys = random.randint(2, 10)
 list_of_dictionaries = []
-a = 1
-b = 1
-while a <= number_of_dictionaries:
+
+for dictionary in range(0, number_of_dictionaries):
     c = {}
-    a += 1
-    while b <= number_of_keys:
+    number_of_keys = random.randint(2, 10)
+    for keys in range(0, number_of_keys):
         c[random.choice(string.ascii_letters)] = random.randint(2, 100)
-        b += 1
     list_of_dictionaries.append(c)
-    b = 1
 
 print(list_of_dictionaries)
 
 united_dictionary = {}
 
-for i in list_of_dictionaries:
-    for key, value in i.items():
+for dictionary in list_of_dictionaries:
+    for key, value in dictionary.items():
         if key in united_dictionary.keys():
-            current_value = i[key]
+            current_value = dictionary[key]
             saved_value = united_dictionary[key]
             if current_value > saved_value:
                 united_dictionary.pop(key)
-                dictionary_number = int(list_of_dictionaries.index(i)) + 1
+                dictionary_number = int(list_of_dictionaries.index(dictionary)) + 1
                 key = f"{key}_{dictionary_number}"
                 united_dictionary[key] = current_value
             else:
                 united_dictionary.pop(key)
-                dict_number = int(list_of_dictionaries.index(i))
+                dict_number = int(list_of_dictionaries.index(dictionary))
                 key = f"{key}_{dict_number}"
                 united_dictionary[key] = saved_value
         else:
