@@ -2,6 +2,7 @@ import datetime
 import os
 import sys
 from hw_4.copy_module_4_file import lower_text, text_split_by_sentence, capitalize_sentences
+from task_for_module_7 import write_count_words_to_csv, write_letters_to_csv
 
 
 class NewsTool:
@@ -43,6 +44,8 @@ class News(Publication):
         with open('newsfeed.txt', 'a') as file:
             file.write(f'\nNews-------------\n City: {self.text} \n Text: {self.city} \n '
                        f'Date of publication: {datetime.date.today()}')
+        write_count_words_to_csv()
+        write_letters_to_csv()
 
 
 class PrivateAdd(Publication):
@@ -61,6 +64,8 @@ class PrivateAdd(Publication):
         with open('newsfeed.txt', 'a') as file:
             file.write(f'\nPrivate Add-------------\n Text: {self.text} \n Expiration date: {self.expiration_date} \n '
                        f'{self.remaining_days_active()} days left')
+        write_count_words_to_csv()
+        write_letters_to_csv()
 
 
 class Event(Publication):
@@ -73,10 +78,12 @@ class Event(Publication):
         with open('newsfeed.txt', 'a') as file:
             file.write(f'\nEvent-------------\n Text: {self.text} \n Ticket price: {self.ticket_price}$ '
                        f'\n Event date: {self.event_date}')
+        write_count_words_to_csv()
+        write_letters_to_csv()
 
 
-# a = NewsTool(input('Select type: 1 - News, 2 - Private add, 3 - Event: '))
-# a.start_program()
+a = NewsTool(input('Select type: 1 - News, 2 - Private add, 3 - Event: '))
+a.start_program()
 
 
 class InputFromFile:
